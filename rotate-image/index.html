@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>旋轉圖片＋速度控制</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: #f2f2f2;
+      font-family: Arial, sans-serif;
+    }
+
+    img {
+      width: 200px;
+      animation: rotate var(--speed) linear infinite;
+    }
+
+    @keyframes rotate {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .control {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    input[type="range"] {
+      width: 300px;
+    }
+  </style>
+</head>
+<body style="--speed: 2s;">
+
+  <!-- 🔁 旋轉圖片（換成你的圖片） -->
+  <img src="MY.pNg" alt="旋轉圖片">
+
+  <!-- 🎚️ 速度控制 -->
+  <div class="control">
+    <p>旋轉速度：<span id="speedText">2</span> 秒 / 圈</p>
+    <input
+      type="range"
+      min="0.5"
+      max="10"
+      step="0.1"
+      value="2"
+      id="speedRange"
+    >
+  </div>
+
+  <script>
+    const range = document.getElementById("speedRange");
+    const speedText = document.getElementById("speedText");
+
+    range.addEventListener("input", () => {
+      document.body.style.setProperty("--speed", range.value + "s");
+      speedText.textContent = range.value;
+    });
+  </script>
+
+</body>
+</html>
