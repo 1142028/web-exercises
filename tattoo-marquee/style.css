@@ -1,0 +1,72 @@
+/* ===== Reset ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== Base ===== */
+body {
+  background-color: #0f0f0f;
+  color: #eee;
+  font-family: system-ui, -apple-system, "Noto Sans TC", sans-serif;
+}
+
+/* ===== Header ===== */
+.site-header {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.site-header h1 {
+  letter-spacing: 4px;
+  font-size: 2.2rem;
+}
+
+.site-header p {
+  color: #aaa;
+  margin-top: 0.5rem;
+}
+
+/* ===== Marquee ===== */
+.marquee {
+  overflow: hidden;
+  width: 100%;
+  padding: 2rem 0;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 1.5rem;
+  width: max-content;
+  animation: scroll 30s linear infinite;
+}
+
+.marquee-track img {
+  height: 220px;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+/* 滑鼠移上去暫停（加分） */
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* ===== Footer ===== */
+.site-footer {
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.9rem;
+  color: #777;
+}
+
+/* ===== Animation ===== */
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
