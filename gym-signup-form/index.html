@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PULSE GYM | 2026 專屬健身體驗預約</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Helvetica Neue", Arial, "Noto Sans TC", sans-serif;
+            border-radius: 0 !important;
+        }
+
+        body {
+            background-color: #f4f5f6;
+            color: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 540px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e5e5e5;
+        }
+
+        .banner-wrapper {
+            width: 100%;
+            height: 260px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .banner-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(15%) contrast(105%);
+        }
+
+        .form-content {
+            padding: 40px;
+        }
+
+        h2 {
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            color: #000000;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #666666;
+            margin-bottom: 36px;
+            line-height: 1.6;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        label.group-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            color: #000000;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #cccccc;
+            background-color: #ffffff;
+            font-size: 14px;
+            color: #1a1a1a;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        select:focus {
+            border-color: #000000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+
+        input[type="email"]:focus:invalid {
+            border-color: #e02020;
+        }
+
+        input:focus:valid {
+            border-color: #25a34a;
+        }
+
+        .range-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: #fafafa;
+            padding: 12px 16px;
+            border: 1px solid #eeeeee;
+        }
+
+        input[type="range"] {
+            flex: 1;
+            -webkit-appearance: none;
+            appearance: none;
+            height: 2px;
+            background: #dddddd;
+            outline: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 14px;
+            height: 14px;
+            background: #000000;
+            cursor: pointer;
+            transition: transform 0.1s ease;
+        }
+
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.3);
+        }
+
+        .range-value {
+            font-size: 15px;
+            font-weight: 700;
+            min-width: 60px;
+            text-align: right;
+            color: #000000;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .card-option {
+            position: relative;
+            display: block;
+            cursor: pointer;
+        }
+
+        .card-option input {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .card-content {
+            display: block;
+            padding: 14px 10px;
+            border: 1px solid #e5e5e5;
+            font-size: 13px;
+            text-align: center;
+            color: #555555;
+            background-color: #ffffff;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+
+        .card-option:hover .card-content {
+            background-color: #f9f9f9;
+            border-color: #b5b5b5;
+        }
+
+        .card-option input:checked + .card-content {
+            background-color: #000000;
+            border-color: #000000;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 18px;
+            background-color: #000000;
+            color: #ffffff;
+            border: none;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 15px;
+        }
+
+        .btn-submit:hover {
+            background-color: #222222;
+        }
+
+        .btn-reset {
+            display: block;
+            width: max-content;
+            margin: 28px auto 0 auto;
+            background: none;
+            border: none;
+            color: #a0a0a0;
+            font-size: 12px;
+            text-decoration: underline;
+            cursor: pointer;
+            letter-spacing: 1px;
+            transition: color 0.2s;
+        }
+
+        .btn-reset:hover {
+            color: #555555;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <div class="banner-wrapper">
+            <img src="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcTBIKkHih-vtrh0o3Rno2C1KwxabL3jhLjov5pFKXBI-yZMxElwsPsZ0EuV4osBFDEi1_doRbpb3nabePI" alt="PULSE GYM 現代極簡健身空間">
+        </div>
+
+        <div class="form-content">
+            
+            <h2>PULSE GYM</h2>
+            <p class="subtitle">填寫預約表單，即刻獲取一對一私人教練體驗課程與專業 InBody 體組成分析。</p>
+
+            <form action="#" method="POST">
+                
+                <div class="form-group">
+                    <label class="group-label" for="username">姓名 / Name</label>
+                    <input type="text" id="username" name="username" placeholder="請輸入您的真實姓名" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="group-label" for="useremail">電子郵件 / Email</label>
+                    <input type="email" id="useremail" name="useremail" placeholder="example@domain.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="group-label">性別 / Gender</label>
+                    <div class="options-grid">
+                        <label class="card-option">
+                            <input type="radio" name="gender" value="male" required>
+                            <span class="card-content">男生 Male</span>
+                        </label>
+                        <label class="card-option">
+                            <input type="radio" name="gender" value="female">
+                            <span class="card-content">女生 Female</span>
+                        </label>
+                        <label class="card-option">
+                            <input type="radio" name="gender" value="transgender">
+                            <span class="card-content">跨性別 Transgender</span>
+                        </label>
+                        <label class="card-option">
+                            <input type="radio" name="gender" value="private">
+                            <span class="card-content">不便透露 Prefer not to say</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="group-label" for="age-range">年齡層 / Age Range</label>
+                    <div class="range-container">
+                        <input type="range" id="age-range" name="age_range" min="16" max="65" value="25" oninput="updateAgeValue(this.value)">
+                        <span class="range-value" id="age-display">25 歲</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="group-label">最喜歡的運動時段 / Preferred Session</label>
+                    <div class="options-grid">
+                        <label class="card-option">
+                            <input type="radio" name="preferred_time" value="morning" checked>
+                            <span class="card-content">晨間 (06:00 - 12:00)</span>
+                        </label>
+                        <label class="card-option">
+                            <input type="radio" name="preferred_time" value="afternoon">
+                            <span class="card-content">午後 (12:00 - 18:00)</span>
+                        </label>
+                        <label class="card-option">
+                            <input type="radio" name="preferred_time" value="evening">
+                            <span class="card-content">夜間 (18:00 - 23:00)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="group-label">感興趣的課程 / Interested Courses (可複選)</label>
+                    <div class="options-grid">
+                        <label class="card-option">
+                            <input type="checkbox" name="courses" value="weight_training">
+                            <span class="card-content">重量訓練 Training</span>
+                        </label>
+                        <label class="card-option">
+                            <input type="checkbox" name="courses" value="yoga">
+                            <span class="card-content">基礎瑜珈 Yoga</span>
+                        </label>
+                        <label class="card-option">
+                            <input type="checkbox" name="courses" value="aerobic">
+                            <span class="card-content">燃脂有氧 Cardio</span>
+                        </label>
+                        <label class="card-option">
+                            <input type="checkbox" name="courses" value="boxing">
+                            <span class="card-content">核心拳擊 Boxing</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="group-label" for="referral">得知本活動的管道 / Referral Channel</label>
+                    <select id="referral" name="referral_channel" required>
+                        <option value="" disabled selected>請選擇管道...</option>
+                        <option value="social_media">社群媒體 (Instagram / Facebook)</option>
+                        <option value="search_engine">搜尋引擎 (Google / Yahoo)</option>
+                        <option value="friends">親友推薦</option>
+                        <option value="pass_by">路過實體店面</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-submit">送出體驗預約 / Submit</button>
+
+                <button type="reset" class="btn-reset" onclick="updateAgeValue(25)">重設表單內容 / Reset</button>
+
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function updateAgeValue(val) {
+            document.getElementById('age-display').innerText = val + ' 歲';
+        }
+    </script>
+</body>
+</html>
